@@ -1,0 +1,30 @@
+<configuration scan="true" scanPeriod="60 seconds">
+
+	<appender name="STDOUT" class="ch.qos.logback.core.ConsoleAppender">
+		<encoder>
+			<pattern>
+				%d{HH:mm:ss.SSS} [%thread] %-5level %logger{36} - %msg%n
+			</pattern>
+		</encoder>
+	</appender>
+	
+	<appender name="WarnFile" class="ch.qos.logback.core.FileAppender">
+		<file>Warn.log</file>
+		<encoder>
+			<pattern>
+				%d{HH:mm:ss.SSS} [%thread] %-5level %logger{36} - %msg%n
+			</pattern>
+		</encoder>
+		<filter class="ch.qos.logback.classic.filter.LevelFilter">
+        		<level>WARN</level>
+        		<onMatch>ACCEPT</onMatch>
+        		<onMismatch>DENY</onMismatch>
+    		</filter>
+	</appender>
+	
+	<root level="INFO">
+		<appender-ref ref="STDOUT" />
+		<appender-ref ref="WarnFile" />
+	</root>
+
+</configuration>
